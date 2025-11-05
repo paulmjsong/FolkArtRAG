@@ -21,7 +21,6 @@ def get_from_encykorea(srcs_path: str, api_key: str, enpoint_url: str) -> None:
             if "content" in item:
                 srcs_file.write(item.content + "\n")
 
-
 def get_from_heritage(srcs_path: str, api_key: str, enpoint_url: str) -> None:
     headers = {
         "X-API-Key": api_key,

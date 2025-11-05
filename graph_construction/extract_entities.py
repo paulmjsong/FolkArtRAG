@@ -20,7 +20,6 @@ def extract_data(llm: OpenAILLM, save_path: str, srcs_path: str) -> None:
                 }
                 save_file.write(f"{record}\n")
 
-
 # TODO: Rewrite this function to properly parse the LLM output
 def parse_extracted_data(data: str) -> tuple[list[str], list[str]]:
     entities = []

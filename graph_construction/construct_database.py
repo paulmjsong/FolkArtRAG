@@ -66,7 +66,6 @@ def create_node(tx, entity: Dict, shared_label: str) -> str:
     ).single()
     return rec["eid"]
 
-
 def create_relationship(tx, rel: Dict, shared_label: str) -> None:
     rel_type = rel["relationship_type"].upper().replace(" ", "_")
     query = f"""
@@ -83,7 +82,6 @@ def create_relationship(tx, rel: Dict, shared_label: str) -> None:
         description=rel.get("relationship_description"),
     )
 
-
 def ensure_vector_index(driver: Driver, embed_dims: int, shared_label: str, index_name: str) -> None:
     create_vector_index(
         driver=driver,
@@ -93,7 +91,6 @@ def ensure_vector_index(driver: Driver, embed_dims: int, shared_label: str, inde
         dimensions=embed_dims,
         similarity_fn="cosine",
     )
-
 
 async def resolve_duplicates(driver: Driver, shared_label: str) -> None:
     if not apoc_available(driver):
@@ -112,7 +109,6 @@ async def resolve_duplicates(driver: Driver, shared_label: str) -> None:
         similarity_threshold=0.95,
     )
     await fuzzy.run()
-
 
 def clear_database(driver: Driver) -> None:
     with driver.session() as session:
@@ -137,7 +133,6 @@ def sanitize_label(raw: str) -> str:
     if not label or not label[0].isalpha():
         label = "Entity" + label  # ensure starts with a letter
     return label
-
 
 def apoc_available(driver: Driver) -> bool:
     with driver.session() as session:
