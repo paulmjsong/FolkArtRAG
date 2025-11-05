@@ -34,14 +34,12 @@ def close_driver(driver: Driver) -> None:
 
 # ---------------- MAIN ----------------
 def main():
-    src_path = "data/scraped.json"
+    src_path = "data/fetched.json"
     dst_path = "data/extracted.json"
     
     if not os.path.exists(src_path):
         print(f"❗ Text file {src_path} not found. Please provide a valid text file.")
         return
-    if not os.path.exists(dst_path):
-        os.mkdir(dst_path)
     
     llm = OpenAILLM(model_name=GENERATION_MODEL, api_key=OPENAI_API_KEY)
     print("🔄 Extracting entities and relationships...")
