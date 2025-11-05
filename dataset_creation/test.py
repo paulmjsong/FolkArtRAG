@@ -19,7 +19,7 @@ def fetch_from_encykorea(eids: list[str], dst_path: str, API_KEY: str) -> None:
     #     "field": "예술·체육",
     #     "pageNo": 1,
     # }
-    items = []
+    fetched = []
     for eid in tqdm(eids, desc="Fetching data from Encyclopedia of Korean Culture"):
         # response = requests.get(url=ENCYKOREA_ENDPOINT_SEARCH, params=params, headers=headers, timeout=30)
         # response = requests.get(url=ENCYKOREA_ENDPOINT_FIELD+"예술·체육", headers=headers, timeout=30)
@@ -31,12 +31,12 @@ def fetch_from_encykorea(eids: list[str], dst_path: str, API_KEY: str) -> None:
         # articles = data.get("articles")
         # print(articles[0].get("headword"))
         article = data.get("article")
-        items.append({
+        fetched.append({
             "headword": article.get("headword"),
             "body": article.get("body").replace('\r', '').split('\n', 1)[1].strip(),
         })
     with open(dst_path, "w", encoding="utf-8") as dst_file:
-        json.dump(items, dst_file, ensure_ascii=False, indent=4)
+        json.dump(fetched, dst_file, ensure_ascii=False, indent=4)
 
 
 # ---------------- MAIN ----------------

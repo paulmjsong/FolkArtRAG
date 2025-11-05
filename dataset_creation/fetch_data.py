@@ -5,7 +5,7 @@ from tqdm import tqdm
 # ---------------- SCRAPE DATA ----------------
 def fetch_from_encykorea(src_path: str, dst_path:str, keywords: list[str], API_KEY: str, ENDPOINT_URL: str) -> None:
     headers = { "X-API-Key": API_KEY }
-    items = []
+    fetched = []
 
     if src_path.endswith(".csv"):
         df = pd.read_csv(src_path, header=None, dtype=str, encoding="utf-8")
@@ -22,13 +22,13 @@ def fetch_from_encykorea(src_path: str, dst_path:str, keywords: list[str], API_K
         data = response.json()
         
         article = data.get("article")
-        items.append({
+        fetched.append({
             "headword": article.get("headword"),
             "body": article.get("body").replace('\r', '').split('\n', 1)[1].strip(),
         })
 
     with open(dst_path, "a", encoding="utf-8") as dst_file:
-        json.dump(items, dst_file, ensure_ascii=False, indent=4)
+        json.dump(fetched, dst_file, ensure_ascii=False, indent=4)
 
 # TODO: Implement this function
 def fetch_from_heritage(src_path: str, dst_path:str, API_KEY: str, ENDPOINT_URL: str) -> None:
