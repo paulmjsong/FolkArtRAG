@@ -127,7 +127,7 @@ def retrieve_context(retriever, labels, query, query_emb, top_k=1, per_seed_limi
     )
     return [item.content for item in results.items]
 
-def generate_answer(llm: OpenAILLM, retriever: VectorCypherRetriever, embedder: OpenAIEmbeddings, labels: List[str], query: str, image_path: str) -> str:
+def generate_response(llm: OpenAILLM, retriever: VectorCypherRetriever, embedder: OpenAIEmbeddings, labels: List[str], query: str, image_path: str) -> str:
     # TODO: translate image to G1
     g1 = img2graph(llm, image_path)
     # print("\G1:\n", g1)
