@@ -28,13 +28,13 @@ def build_database(driver: Driver, dst_path: str, embedder: OpenAILLM, EMBED_DIM
     # TODO: Batch inserts for performance
     with driver.session() as session:
         # Insert nodes
-        # for entity in tqdm(data["entities"], total=len(data["entities"]), desc="Inserting entities"):
-        #     node_id = session.execute_write(create_node, entity)
-        #     node_ids.append(node_id)
-        #     embed_text = f"Name: {entity['name']} | Description: {entity['description']}"
-        #     if entity.get("aliases"):
-        #         embed_text += f" | Aliases: {', '.join(entity['aliases'])}"
-        #     node_embeds.append(embedder.embed_query(embed_text))
+        for entity in tqdm(data["entities"], total=len(data["entities"]), desc="Inserting entities"):
+            node_id = session.execute_write(create_node, entity)
+            node_ids.append(node_id)
+            embed_text = f"Name: {entity['name']} | Description: {entity['description']}"
+            if entity.get("aliases"):
+                embed_text += f" | Aliases: {', '.join(entity['aliases'])}"
+            node_embeds.append(embedder.embed_query(embed_text))
 
         # Insert edges
         for rel in tqdm(data["relations"], total=len(data["relations"]), desc="Inserting relationships"):
@@ -79,7 +79,7 @@ def create_node(tx, entity: Dict) -> str:
         n.description = coalesce(n.description, $description)
     RETURN elementId(n) AS eid
     """
-    print(f"Creating node: {entity['name']}")
+    # print(f"Creating node: {entity['name']}")
     rec = tx.run(
         query, 
         name=entity["name"], 
@@ -91,16 +91,16 @@ def create_edges(tx, rel: Dict) -> list[str]:
     rel_type = rel["type"].upper().replace(" ", "_")
     eids = []
 
-    def run_query(source_type: str, target_type: str, source: str, target: str):
+    def run_query(source: str, target: str):
         query = f"""
-        MATCH (a:{source_type} {{name: $source}})
-        MATCH (b:{target_type} {{name: $target}})
+        MATCH (a {{name: $source}})
+        MATCH (b {{name: $target}})
         MERGE (a)-[r:{rel_type}]->(b)
         ON CREATE SET r.description = $description
         ON MATCH  SET r.description = coalesce(r.description, $description)
         RETURN elementId(r) AS eid
         """
-        print(f"Creating edge: {source} -[{rel_type}]-> {target}")
+        # print(f"Creating edge: {source} -[{rel_type}]-> {target}")
         rec = tx.run(
             query,
             source=source,
@@ -111,8 +111,6 @@ def create_edges(tx, rel: Dict) -> list[str]:
     
     if rel_type == "CONNOTES":
         eid = run_query(
-            source_type="Form",
-            target_type="Concept",
             source=rel["source"],
             target=rel["target"],
         )
@@ -120,8 +118,6 @@ def create_edges(tx, rel: Dict) -> list[str]:
     elif rel_type == "GENERATES_MYTH":
         for source in rel["source_concepts"]:
             eid = run_query(
-                source_type="Concept",
-                target_type="Myth",
                 source=source,
                 target=rel["target"],
             )

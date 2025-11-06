@@ -43,13 +43,13 @@ def main():
         print(f"❗ Source file {src_path} not found. Please provide a valid source file.")
         return
     
-    # llm = OpenAILLM(model_name=GENERATION_MODEL, api_key=OPENAI_API_KEY)
-    # print("🔄 Extracting entities and relationships...")
-    # extract_data(llm, src_path, dst_path, 1)
+    llm = OpenAILLM(model_name=GENERATION_MODEL, api_key=OPENAI_API_KEY)
+    print("🔄 Extracting entities and relationships...")
+    extract_data(llm, src_path, dst_path, 1)
 
     driver = GraphDatabase.driver(URI, auth=AUTH)
-    # print("🧹 Clearing existing database...")
-    # clear_database(driver)
+    print("🧹 Clearing existing database...")
+    clear_database(driver)
     
     embedder = OpenAIEmbeddings(model=EMBED_MODEL, api_key=OPENAI_API_KEY)
     print("🔄 Building database from extracted entities...")
