@@ -87,6 +87,7 @@ def create_node(tx, entity: Dict) -> str:
     ).single()
     return rec["eid"]
 
+# TODO: add node JointForm for GENERATES_MYTH
 def create_edges(tx, rel: Dict) -> list[str]:
     rel_type = rel["type"].upper().replace(" ", "_")
     eids = []

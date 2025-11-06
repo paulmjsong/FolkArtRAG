@@ -3,7 +3,7 @@
 IMG2GRAPH_PROMPT = """
 You are an expert in image understanding and knowledge graph construction.
 Analyze the given image and output only valid JSON that represents the detected entities and relationships as a knowledge graph.
-- Each entity must have a unique "id", "name", and "type".
+- Each entity must have a unique "type" and "name".
 - Each relationship must specify "source", "target", and "relation", where "source" and "target" reference entity "id" values.
 - Include a top-level "entities" array and a "relationships" array.
 - Do not include any text outside of the JSON block.
@@ -11,11 +11,11 @@ Analyze the given image and output only valid JSON that represents the detected 
 Return format example:
 {
   "entities": [
-    { "id": "e1", "name": "Tiger", "type": "Animal" },
-    { "id": "e2", "name": "Rabbit", "type": "Animal" }
+    { "type": "Animal", "name": "Tiger" },
+    { "type": "Animal", "name": "Rabbit" }
   ],
-  "relationships": [
-    { "source": "e2", "target": "e1", "relation": "offers_pipe_to" }
+  "relations": [
+    { "type": "offers_pipe_to", "source": "Rabbit", "target": "Tiger" }
   ]
 }
 """

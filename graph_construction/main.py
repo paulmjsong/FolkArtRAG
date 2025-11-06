@@ -25,7 +25,7 @@ SHARED_INDEX = "__Entity__index"
 
 EMBED_MODEL = "text-embedding-3-large"
 EMBED_DIMS = 3072
-GENERATION_MODEL = "gpt-4o-mini"
+GENERATION_MODEL = "gpt-4o"
 
 
 # ---------------- UTIL ----------------
