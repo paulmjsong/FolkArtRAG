@@ -1,4 +1,5 @@
 import asyncio, json, re
+from tqdm import tqdm
 from typing import Dict, List
 
 from neo4j import Driver
@@ -18,33 +19,39 @@ def build_database(driver: Driver, dst_path: str, embedder: OpenAILLM, EMBED_DIM
     
     ensure_vector_index(driver, EMBED_DIMS, SHARED_LABEL, INDEX_NAME)
     
-    node_ids: List[int] = []
-    vectors: List[List[float]] = []
+    # TODO: Determine whether to store edge embeddings
+    node_ids: List[str] = []
+    node_embeds: List[List[float]] = []
+    # edge_ids: List[str] = []
+    # edge_embeds: List[List[float]] = []
     
+    # TODO: Batch inserts for performance
     with driver.session() as session:
         # Insert nodes
-        for entity in data.get("entities", []):
-            node_id = session.execute_write(create_node, entity)
-            node_ids.append(node_id)
+        # for entity in tqdm(data["entities"], total=len(data["entities"]), desc="Inserting entities"):
+        #     node_id = session.execute_write(create_node, entity)
+        #     node_ids.append(node_id)
+        #     embed_text = f"Name: {entity['name']} | Description: {entity['description']}"
+        #     if entity.get("aliases"):
+        #         embed_text += f" | Aliases: {', '.join(entity['aliases'])}"
+        #     node_embeds.append(embedder.embed_query(embed_text))
 
-            text = f"{entity['entity_name']} :: {entity.get('entity_description', '')}"
-            vectors.append(embedder.embed_query(text))
-
-        # Insert relationships
-        for rel in data.get("relationships", []):
-            session.execute_write(create_relationship, rel)
+        # Insert edges
+        for rel in tqdm(data["relations"], total=len(data["relations"]), desc="Inserting relationships"):
+            edge_ids = session.execute_write(create_edges, rel)
+            # edge_ids.extend(edge_ids)
 
         # One batch upsert for all nodes
         if node_ids:
-            print(f"⬆️  Upserting {len(node_ids)} vectors to 'embedding' property...")
             upsert_vectors(
                 driver=driver,
                 ids=node_ids,
                 embedding_property="embedding",
-                embeddings=vectors,
+                embeddings=node_embeds,
                 entity_type=EntityType.NODE,
             )
     
+    print("  🔍 Resolving duplicate entities...")
     asyncio.run(resolve_duplicates(driver))
 
 
@@ -59,40 +66,71 @@ def ensure_vector_index(driver: Driver, EMBED_DIMS: int, SHARED_LABEL: str, INDE
         similarity_fn="cosine",
     )
 
-def create_node(tx, entity: Dict, SHARED_LABEL: str) -> str:
-    label = sanitize_label(entity["entity_type"])
+def create_node(tx, entity: Dict) -> str:
+    entity_type = sanitize_label(entity["type"])
+    # entity_type = entity["type"].replace(" ", "")
+    if entity_type not in {"Form", "Concept", "Myth"}:
+        raise ValueError(f"Unsupported entity type: {entity_type}")
     query = f"""
-    MERGE (n:{SHARED_LABEL}:{label} {{name: $name}})
+    MERGE (n:{entity_type} {{name: $name}})
     ON CREATE SET
         n.description = $description
     ON MATCH SET
         n.description = coalesce(n.description, $description)
     RETURN elementId(n) AS eid
     """
+    print(f"Creating node: {entity['name']}")
     rec = tx.run(
         query, 
-        name=entity["entity_name"], 
-        description=entity.get("entity_description"),
+        name=entity["name"], 
+        description=entity.get("description"),
     ).single()
     return rec["eid"]
 
-def create_relationship(tx, rel: Dict, SHARED_LABEL: str) -> None:
-    rel_type = rel["relationship_type"].upper().replace(" ", "_")
-    query = f"""
-    MATCH (a:{SHARED_LABEL} {{name: $source}})
-    MATCH (b:{SHARED_LABEL} {{name: $target}})
-    MERGE (a)-[r:{rel_type}]->(b)
-    ON CREATE SET r.description = $description
-    ON MATCH  SET r.description = coalesce(r.description, $description)
-    """
-    tx.run(
-        query,
-        source=rel["source_entity"],
-        target=rel["target_entity"],
-        description=rel.get("relationship_description"),
-    )
+def create_edges(tx, rel: Dict) -> list[str]:
+    rel_type = rel["type"].upper().replace(" ", "_")
+    eids = []
 
-async def resolve_duplicates(driver: Driver, SHARED_LABEL: str) -> None:
+    def run_query(source_type: str, target_type: str, source: str, target: str):
+        query = f"""
+        MATCH (a:{source_type} {{name: $source}})
+        MATCH (b:{target_type} {{name: $target}})
+        MERGE (a)-[r:{rel_type}]->(b)
+        ON CREATE SET r.description = $description
+        ON MATCH  SET r.description = coalesce(r.description, $description)
+        RETURN elementId(r) AS eid
+        """
+        print(f"Creating edge: {source} -[{rel_type}]-> {target}")
+        rec = tx.run(
+            query,
+            source=source,
+            target=target,
+            description=rel.get("description"),
+        ).single()
+        return rec["eid"]
+    
+    if rel_type == "CONNOTES":
+        eid = run_query(
+            source_type="Form",
+            target_type="Concept",
+            source=rel["source"],
+            target=rel["target"],
+        )
+        eids.append(eid)
+    elif rel_type == "GENERATES_MYTH":
+        for source in rel["source_concepts"]:
+            eid = run_query(
+                source_type="Concept",
+                target_type="Myth",
+                source=source,
+                target=rel["target"],
+            )
+            eids.append(eid)
+    else:
+        raise ValueError(f"Unsupported relationship type: {rel_type}")
+    return eids
+
+async def resolve_duplicates(driver: Driver) -> None:
     if not apoc_available(driver):
         print("⚠️ APOC not available; skipping entity resolution.")
         return
@@ -101,14 +139,15 @@ async def resolve_duplicates(driver: Driver, SHARED_LABEL: str) -> None:
     exact = SinglePropertyExactMatchResolver(driver=driver)
     await exact.run()
 
-    # Fuzzy match on :__Entity__ by 'name' property
-    fuzzy = FuzzyMatchResolver(
-        driver=driver,
-        filter_query=f"WHERE entity:`{SHARED_LABEL}`",
-        resolve_properties=["name"],
-        similarity_threshold=0.95,
-    )
-    await fuzzy.run()
+    # Fuzzy match on :Form, :Concept, :Myth by 'name' property
+    for label in ["Form", "Concept", "Myth"]:
+        fuzzy = FuzzyMatchResolver(
+            driver=driver,
+            filter_query=f"WHERE entity:`{label}`",
+            resolve_properties=["name"],
+            similarity_threshold=0.95,
+        )
+        await fuzzy.run()
 
 def clear_database(driver: Driver) -> None:
     with driver.session() as session:

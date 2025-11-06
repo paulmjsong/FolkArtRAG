@@ -42,7 +42,7 @@ def fetch_from_encykorea(eids: list[str], dst_path: str, API_KEY: str) -> None:
 # ---------------- MAIN ----------------
 def main():
     eids = ["E0020370"]
-    dst_path = "data/fetched_test.json"
+    dst_path = "data/fetched.json"
     
     print("🔄 Fetching data from Encyclopedia of Korean Culture...")
     fetch_from_encykorea(eids, dst_path, ENCYKOREA_API_KEY)

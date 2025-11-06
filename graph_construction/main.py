@@ -15,11 +15,13 @@ OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 
 
 # ---------------- NEO4J SETUP ----------------
-URI = "neo4j://localhost:7687"
-AUTH = ("neo4j", "compress")
+URI = os.getenv("NEO4J_URI")
+AUTH = (os.getenv("NEO4J_USER"), os.getenv("NEO4J_PASSWORD"))
 
 SHARED_LABEL = "__Entity__"
-INDEX_NAME = "entity_index"
+SHARED_INDEX = "__Entity__index"
+# SEED_LABEL = "Form"
+# SEED_INDEX = "Form_index"
 
 EMBED_MODEL = "text-embedding-3-large"
 EMBED_DIMS = 3072
@@ -38,20 +40,21 @@ def main():
     dst_path = "data/extracted.json"
     
     if not os.path.exists(src_path):
-        print(f"❗ Text file {src_path} not found. Please provide a valid text file.")
+        print(f"❗ Source file {src_path} not found. Please provide a valid source file.")
         return
     
-    llm = OpenAILLM(model_name=GENERATION_MODEL, api_key=OPENAI_API_KEY)
-    print("🔄 Extracting entities and relationships...")
-    extract_data(llm, src_path, dst_path)
+    # llm = OpenAILLM(model_name=GENERATION_MODEL, api_key=OPENAI_API_KEY)
+    # print("🔄 Extracting entities and relationships...")
+    # extract_data(llm, src_path, dst_path, 1)
 
     driver = GraphDatabase.driver(URI, auth=AUTH)
-    print("🧹 Clearing existing database...")
-    clear_database(driver)
+    # print("🧹 Clearing existing database...")
+    # clear_database(driver)
     
     embedder = OpenAIEmbeddings(model=EMBED_MODEL, api_key=OPENAI_API_KEY)
     print("🔄 Building database from extracted entities...")
-    build_database(driver, dst_path, embedder, EMBED_DIMS, SHARED_LABEL, INDEX_NAME)
+    build_database(driver, dst_path, embedder, EMBED_DIMS, SHARED_LABEL, SHARED_INDEX)
+    # build_database(driver, dst_path, embedder, EMBED_DIMS, SEED_LABEL, SEED_INDEX)
 
     print("✅ Graph built, single vector index populated, and deduplicated.")
     close_driver(driver)

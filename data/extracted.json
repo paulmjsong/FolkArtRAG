@@ -1,0 +1,1293 @@
+{
+    "entities": [
+        {
+            "type": "Form",
+            "name": "Minhwa",
+            "aliases": [
+                "민화"
+            ],
+            "description": "Minhwa refers to traditional Korean folk paintings that arise from societal needs and are created for the people by the people."
+        },
+        {
+            "type": "Concept",
+            "name": "Folk Art",
+            "aliases": [
+                "민속예술"
+            ],
+            "description": "Folk Art embodies the artistic expressions that reflect the culture, history, and values of the general populace."
+        },
+        {
+            "type": "Myth",
+            "name": "Cultural Representation of the People",
+            "aliases": [],
+            "description": "This myth emphasizes the role of art as a reflection of the identity and emotions of the common people in society."
+        },
+        {
+            "type": "Form",
+            "name": "Minhwa",
+            "aliases": [
+                "민화"
+            ],
+            "description": "Minhwa represents a traditional Korean folk painting genre that expresses the desires and beliefs of the common people."
+        },
+        {
+            "type": "Concept",
+            "name": "Desire for Prosperity",
+            "aliases": [
+                "복 받고 오래 살기 바라는 염원"
+            ],
+            "description": "This concept encapsulates the yearning of the common people for blessings and longevity in life."
+        },
+        {
+            "type": "Concept",
+            "name": "Aesthetic Decoration",
+            "aliases": [
+                "생활 주변을 아름답게 꾸미고자 하는 마음"
+            ],
+            "description": "This concept refers to the intent of individuals to beautify their surroundings through artistic expression."
+        },
+        {
+            "type": "Myth",
+            "name": "Cultural Continuity",
+            "aliases": [],
+            "description": "Cultural continuity reflects the enduring traditions and values expressed through folk art across generations."
+        },
+        {
+            "type": "Form",
+            "name": "Animal Painting",
+            "aliases": [],
+            "description": "The depiction of animals in artworks, particularly in the context of Korean murals, which reflect cultural beliefs."
+        },
+        {
+            "type": "Form",
+            "name": "Four Divine Beasts",
+            "aliases": [
+                "사신도"
+            ],
+            "description": "A mural that features mythological beasts in Korean art, symbolizing various elements and beliefs."
+        },
+        {
+            "type": "Form",
+            "name": "Landscape Painting",
+            "aliases": [
+                "산수도"
+            ],
+            "description": "Paintings that depict natural scenery, illustrating the beauty and spirituality of landscapes in Korean culture."
+        },
+        {
+            "type": "Form",
+            "name": "Portrait of Dangun",
+            "aliases": [
+                "단군"
+            ],
+            "description": "A representation of Dangun, a legendary figure in Korean history, connecting to cultural narratives."
+        },
+        {
+            "type": "Myth",
+            "name": "Protection Against Evil Spirits",
+            "aliases": [],
+            "description": "The cultural belief that certain images or practices can ward off evil, rooted in ancient traditions of using protective symbols."
+        },
+        {
+            "type": "Form",
+            "name": "Minhwa",
+            "aliases": [
+                "민화"
+            ],
+            "description": "Minhwa represents traditional Korean folk paintings that have existed alongside the Korean people, reflecting their culture and social dynamics."
+        },
+        {
+            "type": "Concept",
+            "name": "Cultural Existence",
+            "aliases": [
+                "우리 민족과 같이 존재해 왔다"
+            ],
+            "description": "Cultural Existence signifies the deep connection between folk art and the identity of the Korean people throughout history."
+        },
+        {
+            "type": "Concept",
+            "name": "Social Status",
+            "aliases": [
+                "신분이나 사회적 지위"
+            ],
+            "description": "Social Status refers to the relatively low societal standing of many artists who created folk art, indicating socio-economic dynamics in art production."
+        },
+        {
+            "type": "Myth",
+            "name": "Art from the Margins",
+            "aliases": [],
+            "description": "Art from the Margins encapsulates the idea that significant art creation emerges from individuals of lower social status, challenging traditional art narratives."
+        },
+        {
+            "type": "Form",
+            "name": "Korean Painting",
+            "aliases": [
+                "Traditional Korean Painting",
+                "민화"
+            ],
+            "description": "Korean Painting represents a significant aspect of cultural expression in Korea, often influenced by various religious and social contexts."
+        },
+        {
+            "type": "Concept",
+            "name": "Cultural Demand",
+            "aliases": [
+                "수요"
+            ],
+            "description": "Cultural Demand reflects the widespread appreciation and need for art within different social groups and institutions in Korea."
+        },
+        {
+            "type": "Concept",
+            "name": "Religious Ceremony",
+            "aliases": [
+                "제례"
+            ],
+            "description": "Religious Ceremony signifies the rituals and practices associated with various belief systems that call for the use of specific artworks."
+        },
+        {
+            "type": "Myth",
+            "name": "Art as Cultural Soul",
+            "aliases": [],
+            "description": "Art as Cultural Soul embodies the belief that art serves to enhance the cultural identity and spiritual life of the population."
+        },
+        {
+            "type": "Form",
+            "name": "Folk Painting",
+            "aliases": [
+                "민화"
+            ],
+            "description": "Folk Painting represents the material signifier connected to everyday life and cultural practices in Korea."
+        },
+        {
+            "type": "Concept",
+            "name": "Religious Folk Painting",
+            "aliases": [],
+            "description": "Religious Folk Painting embodies themes related to indigenous Korean religions and beliefs."
+        },
+        {
+            "type": "Concept",
+            "name": "Non-religious Folk Painting",
+            "aliases": [],
+            "description": "Non-religious Folk Painting signifies decorative and narrative elements not tied to religious themes."
+        },
+        {
+            "type": "Myth",
+            "name": "Cultural Tradition and Identity",
+            "aliases": [],
+            "description": "Cultural Tradition and Identity represents the overarching narrative forged through the practice and appreciation of folk paintings in Korean society."
+        },
+        {
+            "type": "Form",
+            "name": "Jangsaengdo",
+            "aliases": [
+                "Jangsaengdo",
+                "장생도"
+            ],
+            "description": "Jangsaengdo is a painting that wishes for eternal life, symbolizing longevity through various natural elements."
+        },
+        {
+            "type": "Form",
+            "name": "Sibjangsaengdo",
+            "aliases": [
+                "Sibjangsaengdo",
+                "십장생도"
+            ],
+            "description": "Sibjangsaengdo represents an abstract concept of longevity and is commonly used for celebrations like a 60th birthday."
+        },
+        {
+            "type": "Form",
+            "name": "Ilwolobongdo",
+            "aliases": [
+                "Ilwolobongdo",
+                "일월오봉도"
+            ],
+            "description": "Ilwolobongdo, displaying harmony with nature, is associated with the concept of longevity due to its auspicious symbols."
+        },
+        {
+            "type": "Concept",
+            "name": "Longevity",
+            "aliases": [],
+            "description": "Longevity is the immediate connoted meaning derived from various symbols representing eternal life in traditional Korean paintings."
+        },
+        {
+            "type": "Myth",
+            "name": "Immortality",
+            "aliases": [],
+            "description": "Immortality embodies the overarching ideological concept of being eternally alive, deeply rooted in cultural practices and beliefs."
+        },
+        {
+            "type": "Form",
+            "name": "Tiger",
+            "aliases": [
+                "호랑이"
+            ],
+            "description": "The tiger is a significant figure in Korean folk art representing strength and protection against evil spirits."
+        },
+        {
+            "type": "Form",
+            "name": "Rat",
+            "aliases": [
+                "쥐"
+            ],
+            "description": "The rat is one of the symbolic animals in the Zodiac, often associated with cunning and resourcefulness."
+        },
+        {
+            "type": "Form",
+            "name": "Ox",
+            "aliases": [
+                "소"
+            ],
+            "description": "The ox symbolizes hard work and perseverance in the animal representations of the Zodiac."
+        },
+        {
+            "type": "Form",
+            "name": "Rabbit",
+            "aliases": [
+                "토끼"
+            ],
+            "description": "The rabbit represents fertility and prosperity in the context of folk narratives."
+        },
+        {
+            "type": "Form",
+            "name": "Dragon",
+            "aliases": [
+                "용"
+            ],
+            "description": "The dragon is a powerful symbol of authority and auspiciousness in Korean mythology."
+        },
+        {
+            "type": "Form",
+            "name": "Snake",
+            "aliases": [
+                "뱀"
+            ],
+            "description": "The snake signifies transformation and renewal in folk art depictions."
+        },
+        {
+            "type": "Form",
+            "name": "Horse",
+            "aliases": [
+                "말"
+            ],
+            "description": "The horse symbolizes nobility and freedom within the Zodiac's animal representations."
+        },
+        {
+            "type": "Form",
+            "name": "Goat",
+            "aliases": [
+                "양"
+            ],
+            "description": "The goat represents peace and harmony in the animal motifs of traditional art."
+        },
+        {
+            "type": "Form",
+            "name": "Monkey",
+            "aliases": [
+                "원숭이"
+            ],
+            "description": "The monkey is often associated with cleverness and agility in folklore."
+        },
+        {
+            "type": "Form",
+            "name": "Rooster",
+            "aliases": [
+                "닭"
+            ],
+            "description": "The rooster signifies alertness and punctuality within the Zodiac context."
+        },
+        {
+            "type": "Form",
+            "name": "Dog",
+            "aliases": [
+                "개"
+            ],
+            "description": "The dog is a symbol of loyalty and protection in folk narratives."
+        },
+        {
+            "type": "Form",
+            "name": "Pig",
+            "aliases": [
+                "돼지"
+            ],
+            "description": "The pig represents abundance and prosperity in various cultural contexts."
+        },
+        {
+            "type": "Concept",
+            "name": "Strength",
+            "description": "Strength is a key concept conveyed by the imagery of the tiger and other powerful animals."
+        },
+        {
+            "type": "Concept",
+            "name": "Cunning",
+            "description": "Cunning represents the ability to outwit obstacles, as embodied by the rat and snake."
+        },
+        {
+            "type": "Concept",
+            "name": "Fertility",
+            "description": "Fertility is an important aspect signified by the rabbit in folk art, symbolizing growth."
+        },
+        {
+            "type": "Myth",
+            "name": "Protection Against Evil",
+            "description": "This myth encapsulates the belief in guardianship and resilience illustrated by the animal symbols."
+        },
+        {
+            "type": "Form",
+            "name": "Tiger",
+            "aliases": [
+                "호랑이"
+            ],
+            "description": "The tiger represents a significant cultural and artistic motif within Korean folklore and mythology, often symbolizing power and protection."
+        },
+        {
+            "type": "Form",
+            "name": "Magpie",
+            "aliases": [
+                "까치"
+            ],
+            "description": "The magpie is a bird associated with the conveying of auspicious news, often depicted alongside the tiger in Korean art."
+        },
+        {
+            "type": "Form",
+            "name": "Tiger Skin",
+            "aliases": [
+                "호랑이 가죽",
+                "虎皮圖"
+            ],
+            "description": "This form signifies luxury and cultural significance, often associated with the tiger in various artistic representations."
+        },
+        {
+            "type": "Form",
+            "name": "Guardian Lion",
+            "aliases": [
+                "사자"
+            ],
+            "description": "The guardian lion is a protective figure commonly found in folklore, associated with the tiger in thematic representations."
+        },
+        {
+            "type": "Concept",
+            "name": "Protection",
+            "aliases": [],
+            "description": "This concept reflects the safeguarding and strength associated with the tiger and its representation as a guardian."
+        },
+        {
+            "type": "Concept",
+            "name": "Auspiciousness",
+            "aliases": [],
+            "description": "This concept relates to the positive and favorable news symbolized by the magpie, often connotating good fortune."
+        },
+        {
+            "type": "Concept",
+            "name": "Wealth and Prosperity",
+            "aliases": [],
+            "description": "The aspiration for affluence and good fortune in life, often depicted within the context of folklore."
+        },
+        {
+            "type": "Myth",
+            "name": "Cultural Significance of the Tiger",
+            "aliases": [],
+            "description": "This myth encompasses the tiger's role in reflecting power, protection, and auspiciousness within Korean culture and folklore."
+        },
+        {
+            "type": "Form",
+            "name": "Mountain God",
+            "aliases": [
+                "산신도"
+            ],
+            "description": "The Mountain God represents the guardian spirit of the mountains, embodying national and cultural identity."
+        },
+        {
+            "type": "Form",
+            "name": "Dragon King",
+            "aliases": [
+                "용왕도"
+            ],
+            "description": "The Dragon King symbolizes the protective spirit of the sea, often associated with power and transformation."
+        },
+        {
+            "type": "Form",
+            "name": "Tiger",
+            "aliases": [
+                "호랑이"
+            ],
+            "description": "The Tiger is a significant cultural symbol often representing strength and protection within the mythology."
+        },
+        {
+            "type": "Concept",
+            "name": "Divine Protection",
+            "description": "Divine Protection involves the safeguarding of the nation and its people through spiritual and ancestral forces."
+        },
+        {
+            "type": "Concept",
+            "name": "Cultural Identity",
+            "description": "Cultural Identity emphasizes the shared heritage and beliefs of a community, rooted in mythical and historical narratives."
+        },
+        {
+            "type": "Myth",
+            "name": "Spiritual Guardianship",
+            "description": "Spiritual Guardianship encapsulates the collective belief in supernatural beings as protectors of the nation and its values."
+        },
+        {
+            "type": "Form",
+            "name": "Phoenix",
+            "aliases": [
+                "봉황"
+            ],
+            "description": "The Phoenix is a symbolic creature representing auspiciousness, often portrayed alongside other majestic beasts."
+        },
+        {
+            "type": "Form",
+            "name": "Kirin",
+            "aliases": [
+                "기린"
+            ],
+            "description": "The Kirin is a mythical animal symbolizing auspicious events and is frequently depicted in traditional art."
+        },
+        {
+            "type": "Concept",
+            "name": "Auspiciousness",
+            "aliases": [],
+            "description": "A concept embodying good fortune and favorable circumstances, often associated with royalty and divine favor."
+        },
+        {
+            "type": "Concept",
+            "name": "Royalty",
+            "aliases": [
+                "군왕"
+            ],
+            "description": "The idea of royalty encompasses the highest status and authority within a societal hierarchy."
+        },
+        {
+            "type": "Myth",
+            "name": "Divine Favor of Royalty",
+            "aliases": [],
+            "description": "This myth reflects the belief in divine blessings and auspicious signs associated with rulers and the ruling class."
+        },
+        {
+            "type": "Form",
+            "name": "Tapestry",
+            "aliases": [
+                "탱화"
+            ],
+            "description": "Tapestries serve as objects of worship and contain religious narratives along with portrayals of high monks."
+        },
+        {
+            "type": "Form",
+            "name": "Paintings",
+            "aliases": [
+                "불화",
+                "민화풍 그림들"
+            ],
+            "description": "Paintings include various styles and themes, often featuring religious content and storytelling elements."
+        },
+        {
+            "type": "Concept",
+            "name": "Cultural Heritage",
+            "aliases": [],
+            "description": "Cultural heritage encompasses the traditions and artistic expressions of a specific culture, particularly in relation to folk art."
+        },
+        {
+            "type": "Concept",
+            "name": "Buddhism",
+            "aliases": [
+                "불교"
+            ],
+            "description": "Buddhism represents the religious and philosophical system that influences a significant aspect of Korean art and narratives."
+        },
+        {
+            "type": "Concept",
+            "name": "Confucianism",
+            "aliases": [
+                "유교"
+            ],
+            "description": "Confucianism includes moral and ethical teachings that have shaped Korean cultural and artistic expressions, especially in relation to folk art."
+        },
+        {
+            "type": "Myth",
+            "name": "Preservation of Values",
+            "aliases": [],
+            "description": "This myth reflects the ideology of emphasizing moral values and teachings through folk art, particularly in the context of Korean history."
+        },
+        {
+            "type": "Form",
+            "name": "Carp",
+            "aliases": [
+                "잉어"
+            ],
+            "description": "The carp represents a motif of growth and achievement, symbolizing the aspiration to attain high official positions."
+        },
+        {
+            "type": "Concept",
+            "name": "Aspiration",
+            "aliases": [
+                "높은 관직에 오르기를 바라는 뜻"
+            ],
+            "description": "Aspiration signifies the desire for personal growth and success, particularly in achieving status and recognition within society."
+        },
+        {
+            "type": "Myth",
+            "name": "Success Through Hard Work",
+            "aliases": [],
+            "description": "This myth embodies the belief that dedication and effort can lead to significant accomplishments and elevated social status."
+        },
+        {
+            "type": "Form",
+            "name": "Decorative Folk Art",
+            "aliases": [
+                "장식용 민화"
+            ],
+            "description": "Decorative folk art serves to beautify living spaces and reflects traditional cultural values."
+        },
+        {
+            "type": "Concept",
+            "name": "Cultural Beliefs",
+            "aliases": [
+                "무속",
+                "도교",
+                "불교",
+                "유교"
+            ],
+            "description": "Cultural beliefs encompass the various religious and philosophical traditions that inform the values expressed through these artworks."
+        },
+        {
+            "type": "Form",
+            "name": "Minghwa",
+            "aliases": [],
+            "description": "Minghwa is a traditional Korean folk painting that utilizes vibrant colors and a free brushwork style to express emotions."
+        },
+        {
+            "type": "Form",
+            "name": "Sansoohwa",
+            "aliases": [],
+            "description": "Sansoohwa refers to traditional Korean landscape painting which often features well-known scenic subjects."
+        },
+        {
+            "type": "Form",
+            "name": "Hwajohwa",
+            "aliases": [],
+            "description": "Hwajohwa is a specific type of painting focused on flowers and birds, often used in Minghwa."
+        },
+        {
+            "type": "Concept",
+            "name": "Family Prosperity",
+            "aliases": [],
+            "description": "Family prosperity refers to the well-being and thriving of a family, often symbolized in traditional art."
+        },
+        {
+            "type": "Concept",
+            "name": "Harmony",
+            "aliases": [],
+            "description": "Harmony denotes the peaceful coexistence and balance within a family or among nature."
+        },
+        {
+            "type": "Concept",
+            "name": "Happiness",
+            "aliases": [],
+            "description": "Happiness signifies contentment and joy within familial relationships."
+        },
+        {
+            "type": "Myth",
+            "name": "Flourishing Life through Art",
+            "aliases": [],
+            "description": "This myth suggests that traditional art embodies ideals of prosperity, harmony, and happiness in family life."
+        },
+        {
+            "type": "Form",
+            "name": "Couple",
+            "aliases": [
+                "부부",
+                "부부의 사랑"
+            ],
+            "description": "The couple represents the theme of love and unity, depicting a harmonious relationship akin to animals that care for their young."
+        },
+        {
+            "type": "Form",
+            "name": "Fish",
+            "aliases": [
+                "물고기"
+            ],
+            "description": "Fish symbolize community and abundance as they swim together, representing prosperity."
+        },
+        {
+            "type": "Form",
+            "name": "Bird",
+            "aliases": [
+                "날짐승"
+            ],
+            "description": "Birds symbolize freedom and companionship, often depicted in pairs."
+        },
+        {
+            "type": "Form",
+            "name": "Peony",
+            "aliases": [
+                "모란꽃"
+            ],
+            "description": "Peonies are symbols of wealth and prosperity, often depicted in art to signify abundance."
+        },
+        {
+            "type": "Form",
+            "name": "Four Noble Plants",
+            "aliases": [
+                "사군자",
+                "매화",
+                "난초",
+                "국화",
+                "대나무",
+                "소나무",
+                "파초",
+                "포도"
+            ],
+            "description": "The Four Noble Plants symbolize integrity, faithfulness, and resilience in nature."
+        },
+        {
+            "type": "Concept",
+            "name": "Love",
+            "aliases": [
+                "사랑"
+            ],
+            "description": "Love represents emotional connection and affection in relationships."
+        },
+        {
+            "type": "Concept",
+            "name": "Prosperity",
+            "aliases": [
+                "부귀영화",
+                "번영"
+            ],
+            "description": "Prosperity signifies abundance and well-being, often desired in life and art."
+        },
+        {
+            "type": "Concept",
+            "name": "Integrity",
+            "aliases": [
+                "절개",
+                "신의"
+            ],
+            "description": "Integrity represents moral strength and adherence to ethical principles."
+        },
+        {
+            "type": "Myth",
+            "name": "Abundance and Harmony in Life",
+            "aliases": [
+                "대대로 자손이 번창하기를 바라는 뜻"
+            ],
+            "description": "This myth embodies the belief in generational prosperity and the importance of love and unity in nurturing future generations."
+        },
+        {
+            "type": "Form",
+            "name": "Painting",
+            "aliases": [
+                "Record Painting",
+                "Historical Painting"
+            ],
+            "description": "These visuals capture important events and scenes from history, culture, and folklore."
+        },
+        {
+            "type": "Form",
+            "name": "Spring's Tale Painting",
+            "aliases": [
+                "Chunhyangjeon",
+                "Chunhyangjeon Painting"
+            ],
+            "description": "This painting represents scenes of love and respect from classical literature and folklore."
+        },
+        {
+            "type": "Concept",
+            "name": "Love",
+            "aliases": [
+                "Affection"
+            ],
+            "description": "This concept signifies deep emotional connections and bonds between people."
+        },
+        {
+            "type": "Concept",
+            "name": "Respect",
+            "aliases": [
+                "Honor"
+            ],
+            "description": "This concept embodies feelings of admiration and valuing others."
+        },
+        {
+            "type": "Concept",
+            "name": "Memory",
+            "aliases": [
+                "Recollection"
+            ],
+            "description": "This concept represents the act of remembering significant moments or individuals."
+        },
+        {
+            "type": "Myth",
+            "name": "Cultural Heritage",
+            "aliases": [
+                "Tradition",
+                "Cultural Legacy"
+            ],
+            "description": "This myth encapsulates the preservation and celebration of cultural identities and histories."
+        },
+        {
+            "type": "Form",
+            "name": "Book",
+            "aliases": [
+                "책거리"
+            ],
+            "description": "The book serves as a cultural artifact reflecting the aesthetic preferences of the Joseon Dynasty scholars."
+        },
+        {
+            "type": "Form",
+            "name": "Korean Folk Painting",
+            "aliases": [
+                "민화"
+            ],
+            "description": "Korean folk painting represents the artistic expression of common themes and characteristics in the culture."
+        },
+        {
+            "type": "Concept",
+            "name": "Simplicity",
+            "aliases": [
+                "소박함",
+                "단순함"
+            ],
+            "description": "Simplicity emphasizes the value of straightforwardness in art, avoiding unnecessary embellishments."
+        },
+        {
+            "type": "Concept",
+            "name": "Candidness",
+            "aliases": [
+                "솔직함"
+            ],
+            "description": "Candidness reflects the direct expression of feelings and truths in art, promoting authenticity."
+        },
+        {
+            "type": "Concept",
+            "name": "Wishes for Good Fortune",
+            "aliases": [
+                "기복",
+                "수복강녕"
+            ],
+            "description": "This concept captures the longing for blessings and prosperity within Korean folk paintings."
+        },
+        {
+            "type": "Myth",
+            "name": "Aspirations for a Prosperous Life",
+            "aliases": [],
+            "description": "The myth encapsulates the collective desire for happiness and success, often expressed through art."
+        },
+        {
+            "type": "Concept",
+            "name": "Affection",
+            "aliases": [
+                "Love"
+            ],
+            "description": "Affection represents the warmth and emotional connection expressed in Korean folk art, reflecting love for nature, humanity, and spirituality."
+        },
+        {
+            "type": "Concept",
+            "name": "Endurance",
+            "aliases": [
+                "Strength"
+            ],
+            "description": "Endurance signifies the tenacity and courage of the Korean people in the face of adversity and oppression, vividly illustrated through strong visual elements."
+        },
+        {
+            "type": "Concept",
+            "name": "Humor",
+            "aliases": [
+                "Wit"
+            ],
+            "description": "Humor embodies the optimistic spirit found in Korean folk art, showcasing the ability to find joy and laughter amidst life's hardships."
+        },
+        {
+            "type": "Myth",
+            "name": "Resilience of the Korean Spirit",
+            "aliases": [],
+            "description": "This myth encapsulates the enduring strength, affection, and humor of the Korean people, reflecting their cultural identity and ability to overcome challenges."
+        },
+        {
+            "type": "Concept",
+            "name": "Beauty",
+            "aliases": [
+                "멋"
+            ],
+            "description": "Beauty represents the harmonious combination of elements such as change, balance, contrast, and harmony in art."
+        },
+        {
+            "type": "Form",
+            "name": "Folk Painting",
+            "aliases": [
+                "민화"
+            ],
+            "description": "Folk Painting is a form of artwork that illustrates the theme while adapting to the spatial and compositional needs of its environment."
+        }
+    ],
+    "relations": [
+        {
+            "type": "Connotes",
+            "source": "Minhwa",
+            "target": "Folk Art",
+            "description": "Minhwa connotes the concept of Folk Art as it represents community-driven artistic expressions."
+        },
+        {
+            "type": "Generates_Myth",
+            "source_concepts": [
+                "Folk Art"
+            ],
+            "target": "Cultural Representation of the People",
+            "description": "The concept of Folk Art generates the myth of Cultural Representation of the People, highlighting the connection between art and societal identity."
+        },
+        {
+            "type": "Connotes",
+            "source": "Minhwa",
+            "target": "Aesthetic Decoration",
+            "description": "Minhwa connotes the concept of aesthetic decoration as it embodies the desire to beautify everyday life."
+        },
+        {
+            "type": "Connotes",
+            "source": "Minhwa",
+            "target": "Desire for Prosperity",
+            "description": "Minhwa connotes the desire for prosperity as it reflects the hopes and aspirations of the common people for a better life."
+        },
+        {
+            "type": "Generates_Myth",
+            "source_concepts": [
+                "Aesthetic Decoration",
+                "Desire for Prosperity"
+            ],
+            "target": "Cultural Continuity",
+            "description": "The combined concepts of aesthetic decoration and desire for prosperity generate the myth of cultural continuity, illustrating how traditional values are preserved through folk art."
+        },
+        {
+            "type": "Connotes",
+            "source": "Animal Painting",
+            "target": "Protection Against Evil Spirits",
+            "description": "The animal painting suggests protective qualities associated with warding off evil spirits in ancient Korean culture."
+        },
+        {
+            "type": "Generates_Myth",
+            "source_concepts": [
+                "Protection Against Evil Spirits"
+            ],
+            "target": "Protection Against Evil Spirits",
+            "description": "The practice of using paintings as protective symbols generates the myth of protection against evil spirits throughout Korean history."
+        },
+        {
+            "type": "Connotes",
+            "source": "Four Divine Beasts",
+            "target": "Protection Against Evil Spirits",
+            "description": "The depiction of the Four Divine Beasts connotes cultural beliefs centered on protection against malevolent forces."
+        },
+        {
+            "type": "Connotes",
+            "source": "Landscape Painting",
+            "target": "Protection Against Evil Spirits",
+            "description": "The landscape painting is associated with spiritual beliefs that incorporate elements of nature as protective symbols."
+        },
+        {
+            "type": "Connotes",
+            "source": "Portrait of Dangun",
+            "target": "Protection Against Evil Spirits",
+            "description": "The Portrait of Dangun connotes an embodiment of cultural myths related to protection and heritage."
+        },
+        {
+            "type": "Connotes",
+            "source": "Minhwa",
+            "target": "Cultural Existence",
+            "description": "Minhwa connotes the enduring presence of Korean folk art as an integral part of the cultural identity of the Korean people."
+        },
+        {
+            "type": "Generates_Myth",
+            "source_concepts": [
+                "Cultural Existence",
+                "Social Status"
+            ],
+            "target": "Art from the Margins",
+            "description": "The concepts of Cultural Existence and Social Status generate the myth that significant artistic contributions come from those marginalized within society."
+        },
+        {
+            "type": "Connotes",
+            "source": "Korean Painting",
+            "target": "Cultural Demand",
+            "description": "Korean Painting connotes the cultural demand for artistic expression across various societal contexts."
+        },
+        {
+            "type": "Connotes",
+            "source": "Korean Painting",
+            "target": "Religious Ceremony",
+            "description": "Korean Painting connotes the role of art in religious ceremonies, emphasizing its functional importance in rituals."
+        },
+        {
+            "type": "Generates_Myth",
+            "source_concepts": [
+                "Cultural Demand",
+                "Religious Ceremony"
+            ],
+            "target": "Art as Cultural Soul",
+            "description": "The concepts of Cultural Demand and Religious Ceremony generate the myth of Art as Cultural Soul, illustrating art's intrinsic value to the cultural and spiritual life of the society."
+        },
+        {
+            "type": "Connotes",
+            "source": "Folk Painting",
+            "target": "Religious Folk Painting",
+            "description": "Folk Painting connotes the concept of Religious Folk Painting through its depiction of themes from indigenous religions."
+        },
+        {
+            "type": "Connotes",
+            "source": "Folk Painting",
+            "target": "Non-religious Folk Painting",
+            "description": "Folk Painting connotes the concept of Non-religious Folk Painting as it includes decorative and narrative aspects of everyday life."
+        },
+        {
+            "type": "Generates_Myth",
+            "source_concepts": [
+                "Non-religious Folk Painting",
+                "Religious Folk Painting"
+            ],
+            "target": "Cultural Tradition and Identity",
+            "description": "The combinations of both Non-religious Folk Painting and Religious Folk Painting generate the myth of Cultural Tradition and Identity, signifying the collective cultural heritage."
+        },
+        {
+            "type": "Connotes",
+            "source": "Jangsaengdo",
+            "target": "Longevity",
+            "description": "Jangsaengdo connotes the concept of longevity through its imagery of natural elements associated with eternal life."
+        },
+        {
+            "type": "Connotes",
+            "source": "Sibjangsaengdo",
+            "target": "Longevity",
+            "description": "Sibjangsaengdo connotes longevity through its symbolic representation of life-cycle celebrations."
+        },
+        {
+            "type": "Connotes",
+            "source": "Ilwolobongdo",
+            "target": "Longevity",
+            "description": "Ilwolobongdo connotes longevity through its auspicious depiction of harmonious natural elements."
+        },
+        {
+            "type": "Generates_Myth",
+            "source_concepts": [
+                "Longevity"
+            ],
+            "target": "Immortality",
+            "description": "The concept of longevity generates the myth of immortality, reflecting the cultural desire for eternal life."
+        },
+        {
+            "type": "Connotes",
+            "source": "Tiger",
+            "target": "Strength",
+            "description": "The image of the tiger connotes the concept of strength and prowess."
+        },
+        {
+            "type": "Connotes",
+            "source": "Rat",
+            "target": "Cunning",
+            "description": "The depiction of the rat connotes the concept of cunning and resourcefulness."
+        },
+        {
+            "type": "Connotes",
+            "source": "Rabbit",
+            "target": "Fertility",
+            "description": "The rabbit's representation connotes the concept of fertility and growth."
+        },
+        {
+            "type": "Generates_Myth",
+            "source_concepts": [
+                "Cunning",
+                "Fertility",
+                "Strength"
+            ],
+            "target": "Protection Against Evil",
+            "description": "The concepts of cunning, fertility, and strength collectively generate the myth of protection against evil."
+        },
+        {
+            "type": "Connotes",
+            "source": "Tiger",
+            "target": "Protection",
+            "description": "The form of the tiger connotes the concept of protection through its historical role as a guardian figure."
+        },
+        {
+            "type": "Connotes",
+            "source": "Magpie",
+            "target": "Auspiciousness",
+            "description": "The form of the magpie connotes the concept of auspiciousness as it relates to bringing good news."
+        },
+        {
+            "type": "Generates_Myth",
+            "source_concepts": [
+                "Auspiciousness",
+                "Protection",
+                "Wealth and Prosperity"
+            ],
+            "target": "Cultural Significance of the Tiger",
+            "description": "The concepts of auspiciousness, protection, and wealth and prosperity collectively generate the myth of the cultural significance of the tiger in Korean folklore."
+        },
+        {
+            "type": "Connotes",
+            "source": "Mountain God",
+            "target": "Divine Protection",
+            "description": "The form of the Mountain God connotes the concept of Divine Protection as it symbolizes the safeguarding influence of nature's spirits."
+        },
+        {
+            "type": "Connotes",
+            "source": "Dragon King",
+            "target": "Divine Protection",
+            "description": "The form of the Dragon King connotes the concept of Divine Protection, emphasizing the protective role of sea deities."
+        },
+        {
+            "type": "Connotes",
+            "source": "Tiger",
+            "target": "Cultural Identity",
+            "description": "The form of the Tiger connotes the concept of Cultural Identity, representing strength and a connection to heritage."
+        },
+        {
+            "type": "Generates_Myth",
+            "source_concepts": [
+                "Cultural Identity",
+                "Divine Protection"
+            ],
+            "target": "Spiritual Guardianship",
+            "description": "The combination of Cultural Identity and Divine Protection generates the myth of Spiritual Guardianship, reinforcing the belief in protectors of the nation."
+        },
+        {
+            "type": "Connotes",
+            "source": "Phoenix",
+            "target": "Auspiciousness",
+            "description": "The image of the Phoenix connotes the concept of auspiciousness."
+        },
+        {
+            "type": "Connotes",
+            "source": "Kirin",
+            "target": "Auspiciousness",
+            "description": "The depiction of the Kirin connotes the concept of auspiciousness."
+        },
+        {
+            "type": "Generates_Myth",
+            "source_concepts": [
+                "Auspiciousness",
+                "Royalty"
+            ],
+            "target": "Divine Favor of Royalty",
+            "description": "The concepts of auspiciousness and royalty generate the myth of divine favor of royalty."
+        },
+        {
+            "type": "Connotes",
+            "source": "Tapestry",
+            "target": "Cultural Heritage",
+            "description": "The tapestry connotes cultural heritage through its representation of religious themes and storytelling in art."
+        },
+        {
+            "type": "Connotes",
+            "source": "Paintings",
+            "target": "Buddhism",
+            "description": "The paintings connotate Buddhism due to their frequent depiction of Buddhist themes and narratives."
+        },
+        {
+            "type": "Connotes",
+            "source": "Paintings",
+            "target": "Confucianism",
+            "description": "The paintings also connotate Confucianism by illustrating ethical lessons and moral principles relevant to Korean society."
+        },
+        {
+            "type": "Generates_Myth",
+            "source_concepts": [
+                "Buddhism",
+                "Confucianism"
+            ],
+            "target": "Preservation of Values",
+            "description": "The combination of Buddhist and Confucian concepts generates the myth of preservation of values in art, emphasizing moral and cultural teachings."
+        },
+        {
+            "type": "Connotes",
+            "source": "Carp",
+            "target": "Aspiration",
+            "description": "The form of the carp connotes the concept of aspiration, highlighting one's hopes for success and high status."
+        },
+        {
+            "type": "Generates_Myth",
+            "source_concepts": [
+                "Aspiration",
+                "Cultural Beliefs"
+            ],
+            "target": "Success Through Hard Work",
+            "description": "The concepts of aspiration and cultural beliefs work together to generate the myth of success through hard work, suggesting that diligence and adherence to tradition will lead to accomplishment."
+        },
+        {
+            "type": "Connotes",
+            "source": "Decorative Folk Art",
+            "target": "Cultural Beliefs",
+            "description": "The form of decorative folk art connotes cultural beliefs, demonstrating how artistic expression is intertwined with traditional values."
+        },
+        {
+            "type": "Connotes",
+            "source": "Minghwa",
+            "target": "Family Prosperity",
+            "description": "Minghwa connotes the idea of family prosperity through its vibrant representations in folk art."
+        },
+        {
+            "type": "Connotes",
+            "source": "Minghwa",
+            "target": "Harmony",
+            "description": "Minghwa connotes harmony by depicting peaceful and balanced scenes within family and nature."
+        },
+        {
+            "type": "Connotes",
+            "source": "Minghwa",
+            "target": "Happiness",
+            "description": "Minghwa connotes happiness through expressions of joy and fulfillment in family settings."
+        },
+        {
+            "type": "Generates_Myth",
+            "source_concepts": [
+                "Family Prosperity",
+                "Harmony",
+                "Happiness"
+            ],
+            "target": "Flourishing Life through Art",
+            "description": "The concepts of family prosperity, harmony, and happiness collectively generate the myth of flourishing life through art."
+        },
+        {
+            "type": "Connotes",
+            "source": "Hwajohwa",
+            "target": "Family Prosperity",
+            "description": "Hwajohwa connotes family prosperity by symbolizing growth and abundance through floral and avian imagery."
+        },
+        {
+            "type": "Connotes",
+            "source": "Hwajohwa",
+            "target": "Harmony",
+            "description": "Hwajohwa connotes harmony by reflecting the interconnectedness of nature and familial bonds."
+        },
+        {
+            "type": "Connotes",
+            "source": "Hwajohwa",
+            "target": "Happiness",
+            "description": "Hwajohwa connotes happiness through joyful and colorful depictions of nature that uplift the spirit."
+        },
+        {
+            "type": "Generates_Myth",
+            "source_concepts": [
+                "Family Prosperity",
+                "Harmony",
+                "Happiness"
+            ],
+            "target": "Flourishing Life through Art",
+            "description": "The concepts of family prosperity, harmony, and happiness collectively generate the myth of flourishing life through art."
+        },
+        {
+            "type": "Connotes",
+            "source": "Couple",
+            "target": "Love",
+            "description": "The form of the couple suggests the concept of love and emotional connection."
+        },
+        {
+            "type": "Connotes",
+            "source": "Fish",
+            "target": "Prosperity",
+            "description": "The form of fish swimming together connotes the concept of prosperity and abundance."
+        },
+        {
+            "type": "Connotes",
+            "source": "Bird",
+            "target": "Love",
+            "description": "The form of birds connotes the concept of love and companionship."
+        },
+        {
+            "type": "Connotes",
+            "source": "Peony",
+            "target": "Prosperity",
+            "description": "The form of the peony connotes the concept of wealth and abundance."
+        },
+        {
+            "type": "Connotes",
+            "source": "Four Noble Plants",
+            "target": "Integrity",
+            "description": "The form of the Four Noble Plants connotes the concept of integrity and moral strength."
+        },
+        {
+            "type": "Generates_Myth",
+            "source_concepts": [
+                "Integrity",
+                "Love",
+                "Prosperity"
+            ],
+            "target": "Abundance and Harmony in Life",
+            "description": "The concepts of integrity, love, and prosperity combine to generate the myth of abundance and harmony in life."
+        },
+        {
+            "type": "Connotes",
+            "source": "Painting",
+            "target": "Love",
+            "description": "The form of painting suggests the concept of love through its depiction of cherished moments and relationships."
+        },
+        {
+            "type": "Connotes",
+            "source": "Painting",
+            "target": "Respect",
+            "description": "The form of painting evokes the concept of respect by illustrating scenes of honor and admiration."
+        },
+        {
+            "type": "Connotes",
+            "source": "Spring's Tale Painting",
+            "target": "Memory",
+            "description": "The Spring's Tale Painting connotes the concept of memory by depicting scenes from beloved stories that are remembered fondly."
+        },
+        {
+            "type": "Generates_Myth",
+            "source_concepts": [
+                "Love",
+                "Memory",
+                "Respect"
+            ],
+            "target": "Cultural Heritage",
+            "description": "The concepts of love, memory, and respect collectively generate the myth of cultural heritage as they emphasize the importance of relationships and recollections in cultural narratives."
+        },
+        {
+            "type": "Connotes",
+            "source": "Book",
+            "target": "Simplicity",
+            "description": "The form of the book connotes the concept of simplicity in its unadorned representation of cultural values."
+        },
+        {
+            "type": "Connotes",
+            "source": "Korean Folk Painting",
+            "target": "Candidness",
+            "description": "Korean folk painting connotes candidness through its direct and honest depiction of everyday life."
+        },
+        {
+            "type": "Generates_Myth",
+            "source_concepts": [
+                "Candidness",
+                "Simplicity",
+                "Wishes for Good Fortune"
+            ],
+            "target": "Aspirations for a Prosperous Life",
+            "description": "The combination of candidness, simplicity, and wishes for good fortune generates the myth of aspirations for a prosperous life."
+        },
+        {
+            "type": "Connotes",
+            "source": "Affection",
+            "target": "Endurance",
+            "description": "The concept of affection connotes a deeper resilience amidst struggles, highlighting the emotional strength of the people."
+        },
+        {
+            "type": "Connotes",
+            "source": "Endurance",
+            "target": "Humor",
+            "description": "Endurance connotes humor as it reflects the ability to maintain joy in difficult circumstances, showcasing the optimistic outlook of people."
+        },
+        {
+            "type": "Generates_Myth",
+            "source_concepts": [
+                "Affection",
+                "Endurance",
+                "Humor"
+            ],
+            "target": "Resilience of the Korean Spirit",
+            "description": "The interplay between affection, endurance, and humor generates the myth of resilience, celebrating the positive traits of the Korean identity."
+        },
+        {
+            "type": "Connotes",
+            "source": "Folk Painting",
+            "target": "Beauty",
+            "description": "Folk Painting connotes the concept of Beauty through its unique combination of elements tailored to fit specific living spaces."
+        }
+    ]
+}
