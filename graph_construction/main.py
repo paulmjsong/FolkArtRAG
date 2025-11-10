@@ -36,8 +36,8 @@ def close_driver(driver: Driver) -> None:
 
 # ---------------- MAIN ----------------
 def main():
-    src_path = "data/fetched.json"
-    dst_path = "data/extracted.json"
+    src_path = "example/data/fetched.json"
+    dst_path = "example/data/extracted.json"
     
     if not os.path.exists(src_path):
         print(f"❗ Source file {src_path} not found. Please provide a valid source file.")

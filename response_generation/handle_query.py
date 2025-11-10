@@ -1,4 +1,4 @@
-import datetime, json, os, re
+import base64, datetime, json, os
 from typing import Dict, List
 
 from neo4j import GraphDatabase
@@ -105,7 +105,7 @@ def img2graph(llm: OpenAILLM, image_path: str) -> None:
         {
             "type": "image_url",
             "image_url": {"url": image_path},
-            # "image_url": {"url": encode_ndarray_to_base64(image_path)},
+            # "image_url": {"url": encode_image(image_path)},
         },
     ]
     result = llm.invoke(content)
@@ -127,6 +127,47 @@ def retrieve_context(retriever, labels, query, query_emb, top_k=1, per_seed_limi
     )
     return [item.content for item in results.items]
 
+# With G1
+# def generate_response(llm: OpenAILLM, retriever: VectorCypherRetriever, embedder: OpenAIEmbeddings, labels: List[str], query: str, image_path: str) -> str:
+#     # TODO: translate image to G1
+#     g1 = img2graph(llm, image_path)
+#     # print("\G1:\n", g1)
+
+#     # TODO: retrieve G2 from G1 + query
+#     r_query = f"CONTEXT: {g1}\n\nQUERY: {query}"
+#     r_query_emb = embedder.embed_query(r_query)
+#     context = retrieve_context(retriever, labels, r_query, r_query_emb)
+#     g2 = "\n".join(item for item in context)
+#     # print("\G2:\n", g2)
+    
+#     # TODO: create G3 from G1 + G2
+#     g3 = g1 + "\n" + g2
+
+#     content = [
+#         {
+#             "type": "text",
+#             "text": f"Context:\n{g3}\n\nQuestion:\n{query}\n\nAnswer:",
+#         },
+#         {
+#             "type": "image_url",
+#             "image_url": {"url": image_path},
+#             # "image_url": {"url": encode_image(image_path)},
+#         },
+#     ]
+#     result = llm.chat.completions.create(
+#         messages=[
+#             {"role": "system", "content": SYSTEM_PROMPT},
+#             {"role": "user", "content": content},
+#         ],
+#     )
+#     response = result.choices[0].message.content.strip()
+#     save_history([
+#         {"role": "user", "content": content},
+#         {"role": "assistant", "content": response},
+#     ])
+#     return response
+
+# Without G1
 def generate_response(llm: OpenAILLM, retriever: VectorCypherRetriever, embedder: OpenAIEmbeddings, labels: List[str], query: str, image_path: str) -> str:
     # TODO: translate image to G1
     g1 = img2graph(llm, image_path)
@@ -150,7 +191,7 @@ def generate_response(llm: OpenAILLM, retriever: VectorCypherRetriever, embedder
         {
             "type": "image_url",
             "image_url": {"url": image_path},
-            # "image_url": {"url": encode_ndarray_to_base64(image_path)},
+            # "image_url": {"url": encode_image(image_path)},
         },
     ]
     result = llm.chat.completions.create(
@@ -168,12 +209,10 @@ def generate_response(llm: OpenAILLM, retriever: VectorCypherRetriever, embedder
 
 
 # ---------------- UTILS ----------------
-# def encode_ndarray_to_base64(image):
-#     pil_img = Image.fromarray(image.astype("uint8"))
-#     buffered = BytesIO()
-#     pil_img.save(buffered, format="PNG")
-#     img_str = base64.b64encode(buffered.getvalue()).decode("utf-8")
-#     return f"data:image/png;base64,{img_str}"
+def encode_image(image_path: str) -> str:
+    with open(image_path, "rb") as img_file:
+        img_str = base64.b64encode(img_file.read()).decode("utf-8")
+        return f"data:image/png;base64,{img_str}"
 
 def save_history(history: List[Dict]=[]) -> None:
     folder = "./chat_logs"

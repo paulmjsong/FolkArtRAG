@@ -14,8 +14,8 @@ OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 
 
 # ---------------- NEO4J SETUP ----------------
-URI = "neo4j://localhost:7687"
-AUTH = ("neo4j", "compress")
+URI = os.getenv("NEO4J_URI")
+AUTH = (os.getenv("NEO4J_USER"), os.getenv("NEO4J_PASSWORD"))
 
 SHARED_LABEL = "__Entity__"
 SHARED_INDEX = "__Entity__index"
@@ -40,36 +40,39 @@ def main():
     llm = OpenAILLM(model_name=GENERATION_MODEL, api_key=OPENAI_API_KEY)
     retriever = create_retriever(driver, embedder, SHARED_INDEX)
     
-    input_examples = [
-        {
-            "query": "이 그림에 묘사된 전통 한국 민화의 주요 요소들은 무엇이며, 각각의 상징적 의미는 무엇인가요?",
-            "image": "painting_examples/담배피우는호랑이.png",
-        },
-        {
-            "query": "이 그림에 묘사된 전통 한국 민화의 주요 요소들은 무엇이며, 각각의 상징적 의미는 무엇인가요?",
-            "image": "painting_examples/일월오봉도.webp",
-        },
-        {
-            "query": "이 그림에 묘사된 전통 한국 민화의 주요 요소들은 무엇이며, 각각의 상징적 의미는 무엇인가요?",
-            "image": "painting_examples/작호도.jpg",
-        },
-    ]
-    output_examples = []
+    src_path = "example/input.json"
+    dst_path = "example/output.json"
     
-    for input in input_examples:
-        start_time = time.time()
-        response = generate_response(llm, embedder, retriever, [SHARED_LABEL], input["query"], input["image"])
-        elapsed_time = time.time() - start_time
+    if not os.path.exists(src_path):
+        print(f"❗ Source file {src_path} not found. Please provide a valid source file.")
+        return
+    
+    with open(src_path, "r", encoding="utf-8") as src_file:
+        all_input = json.load(src_file)
+        all_output = []
 
-        output_examples.append({
-            "input" : input,
-            "output": response,
-            "time"  : elapsed_time,
+    for input in all_input:
+        img_path = input["image"]
+        qa_pairs = []
+
+        for query in input["query"]:
+            start_time = time.time()
+            response = generate_response(llm, embedder, retriever, [SHARED_LABEL], query, img_path)
+            elapsed_time = time.time() - start_time
+
+            qa_pairs.append({
+                "query": query,
+                "response": response,
+                "time": elapsed_time,
+            })
+        
+        all_output.append({
+            "image": img_path,
+            "output": qa_pairs,
         })
     
-    dst_path = "output_examples/output.json"
-    with open(dst_path, "w", encoding="utf-8") as f:
-        json.dump(output_examples, f, ensure_ascii=False, indent=4)
+    with open(dst_path, "w", encoding="utf-8") as dst_file:
+        json.dump(all_output, dst_file, ensure_ascii=False, indent=4)
     
     close_driver(driver)
 

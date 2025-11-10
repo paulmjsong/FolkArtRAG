@@ -16,8 +16,8 @@ HERITAGE_ENDPOINT = os.getenv("HERITAGE_ENDPOINT")
 # ---------------- MAIN ----------------
 def main():
     keywords = ['회화', '동물', '식물']
-    src_path = "data/한국학중앙연구원_한국민족문화대백과사전_20240130.csv"
-    dst_path = "data/fetched.json"
+    src_path = "example/data/한국학중앙연구원_한국민족문화대백과사전_20240130.csv"
+    dst_path = "example/data/fetched.json"
     
     if not os.path.exists(src_path):
         print(f"❗ Source file {src_path} not found. Please provide a valid source file.")
