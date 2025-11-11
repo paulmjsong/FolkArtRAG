@@ -1,6 +1,6 @@
 import asyncio, json, re
 from tqdm import tqdm
-from typing import Dict, List
+from typing import Dict, List, Optional
 
 from neo4j import Driver
 from neo4j_graphrag.indexes import create_vector_index, upsert_vectors
@@ -19,29 +19,28 @@ def build_database(driver: Driver, dst_path: str, embedder: OpenAILLM, EMBED_DIM
     
     ensure_vector_index(driver, EMBED_DIMS, SHARED_LABEL, INDEX_NAME)
     
-    # TODO: Determine whether to store edge embeddings
     node_ids: List[str] = []
     node_embeds: List[List[float]] = []
-    # edge_ids: List[str] = []
-    # edge_embeds: List[List[float]] = []
     
     # TODO: Batch inserts for performance
     with driver.session() as session:
         # Insert nodes
-        for entity in tqdm(data["entities"], total=len(data["entities"]), desc="Inserting entities"):
+        for entity in tqdm(data["entities"], total=len(data["entities"]), desc="Upserting entities"):
             node_id = session.execute_write(create_node, entity)
             node_ids.append(node_id)
+
             embed_text = f"Name: {entity['name']} | Description: {entity['description']}"
             if entity.get("aliases"):
                 embed_text += f" | Aliases: {', '.join(entity['aliases'])}"
             node_embeds.append(embedder.embed_query(embed_text))
 
         # Insert edges
-        for rel in tqdm(data["relations"], total=len(data["relations"]), desc="Inserting relationships"):
-            edge_ids = session.execute_write(create_edges, rel)
-            # edge_ids.extend(edge_ids)
+        for rel in tqdm(data["relations"], total=len(data["relations"]), desc="Upserting relationships"):
+            joint_node_id = session.execute_write(create_edges, rel)
+            if joint_node_id:
+                node_ids.extend(joint_node_id)
 
-        # One batch upsert for all nodes
+        # Batch upsert node embeddings
         if node_ids:
             upsert_vectors(
                 driver=driver,
@@ -66,66 +65,80 @@ def ensure_vector_index(driver: Driver, EMBED_DIMS: int, SHARED_LABEL: str, INDE
         similarity_fn="cosine",
     )
 
-def create_node(tx, entity: Dict) -> str:
+def create_node(tx, entity: Dict) -> Optional[str]:
     entity_type = sanitize_label(entity["type"])
-    # entity_type = entity["type"].replace(" ", "")
     if entity_type not in {"Form", "Concept", "Myth"}:
         raise ValueError(f"Unsupported entity type: {entity_type}")
+    
     query = f"""
     MERGE (n:{entity_type} {{name: $name}})
-    ON CREATE SET
-        n.description = $description
-    ON MATCH SET
-        n.description = coalesce(n.description, $description)
+    ON CREATE SET n.description = $description
+    ON MATCH  SET n.description = coalesce(n.description, $description)
     RETURN elementId(n) AS eid
     """
-    # print(f"Creating node: {entity['name']}")
+    # print(f"  Creating node: {entity['name']}")
     rec = tx.run(
         query, 
-        name=entity["name"], 
-        description=entity.get("description"),
+        name=entity["name"].replace(" ", ""), 
+        description=entity["description"],
     ).single()
+    
     return rec["eid"]
 
-# TODO: add node JointForm for GENERATES_MYTH
-def create_edges(tx, rel: Dict) -> list[str]:
-    rel_type = rel["type"].upper().replace(" ", "_")
-    eids = []
+def create_edges(tx, rel: Dict) -> Optional[str]:
 
-    def run_query(source: str, target: str):
+    def run_query(source: str, target: str, rel_type: str) -> None:
         query = f"""
         MATCH (a {{name: $source}})
         MATCH (b {{name: $target}})
         MERGE (a)-[r:{rel_type}]->(b)
         ON CREATE SET r.description = $description
         ON MATCH  SET r.description = coalesce(r.description, $description)
-        RETURN elementId(r) AS eid
         """
-        # print(f"Creating edge: {source} -[{rel_type}]-> {target}")
-        rec = tx.run(
+        # print(f"  Creating edge: {source} -[{rel_type}]-> {target}")
+        tx.run(
             query,
             source=source,
             target=target,
             description=rel.get("description"),
-        ).single()
-        return rec["eid"]
+        )
     
+    rel_type = rel["type"].upper().replace(" ", "_")
+    node_id = None
+
     if rel_type == "CONNOTES":
-        eid = run_query(
+        run_query(
             source=rel["source"],
             target=rel["target"],
+            rel_type=rel_type,
         )
-        eids.append(eid)
     elif rel_type == "GENERATES_MYTH":
+        # Create intermediate JointForm node
+        joint_name = "+".join(sorted(rel["source_concepts"]))
+        joint_desc = f"Joint form of concepts: {', '.join(rel['source_concepts'])}"
+        joint_form = {
+            "type": "JointForm",
+            "name": joint_name,
+            "description": joint_desc,
+        }
+        node_id = create_node(tx, joint_form)
+        # Create edges from Concepts to JointForm
         for source in rel["source_concepts"]:
-            eid = run_query(
+            run_query(
                 source=source,
-                target=rel["target"],
+                target=joint_name,
+                rel_type="PART_OF_JOINT_FORM",
             )
-            eids.append(eid)
+        # Create edge from JointForm to target myth
+        run_query(
+            source=joint_name,
+            target=rel["target"],
+            rel_type=rel_type,
+        )
     else:
         raise ValueError(f"Unsupported relationship type: {rel_type}")
-    return eids
+    
+    return node_id
 
 async def resolve_duplicates(driver: Driver) -> None:
     if not apoc_available(driver):
@@ -158,7 +171,7 @@ def clear_database(driver: Driver) -> None:
             session.run(f"DROP INDEX {name} IF EXISTS")
         # Delete nodes/relationships
         session.run("MATCH (n) DETACH DELETE n")
-    print("🗑️  Dropped all constraints, indexes, and data.")
+    # print("🗑️  Dropped all constraints, indexes, and data.")
 
 
 # ---------------- UTILS ----------------
