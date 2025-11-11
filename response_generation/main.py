@@ -24,7 +24,8 @@ SHARED_INDEX = "__Entity__index"
 
 EMBED_MODEL = "text-embedding-3-large"
 EMBED_DIMS = 3072
-GENERATION_MODEL = "gpt-4o"
+CAPTION_MODEL = "gpt-4o-mini"
+INFERENCE_MODEL = "gpt-4o"
 
 
 # ---------------- UTIL ----------------
@@ -37,8 +38,11 @@ def close_driver(driver: Driver) -> None:
 def main():
     driver = GraphDatabase.driver(URI, auth=AUTH)
     embedder = OpenAIEmbeddings(model=EMBED_MODEL, api_key=OPENAI_API_KEY)
-    llm = OpenAILLM(model_name=GENERATION_MODEL, api_key=OPENAI_API_KEY)
     retriever = create_retriever(driver, embedder, SHARED_INDEX)
+    
+    # TODO: replace caption model with LLAVA
+    caption_llm = OpenAILLM(model_name=CAPTION_MODEL, api_key=OPENAI_API_KEY)
+    inference_llm = OpenAILLM(model_name=INFERENCE_MODEL, api_key=OPENAI_API_KEY)
     
     src_path = "example/input.json"
     dst_path = "example/output.json"
@@ -57,7 +61,7 @@ def main():
 
         for query in input["query"]:
             start_time = time.time()
-            response = generate_response(llm, embedder, retriever, [SHARED_LABEL], query, img_path)
+            response = generate_response(inference_llm, caption_llm, embedder, retriever, [SHARED_LABEL], query, img_path)
             elapsed_time = time.time() - start_time
 
             qa_pairs.append({

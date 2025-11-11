@@ -7,7 +7,7 @@ from neo4j_graphrag.llm import OpenAILLM
 from neo4j_graphrag.retrievers import VectorCypherRetriever
 from neo4j_graphrag.types import RetrieverResultItem
 
-from prompts import IMG2GRAPH_PROMPT, RETRIEVAL_CYPHER, SYSTEM_PROMPT
+from prompts import IMG2GRAPH_PROMPT, IMG2TEXT_PROMPT, RETRIEVAL_CYPHER, SYSTEM_PROMPT
 
 
 # ---------------- CREATE RETRIEVER ----------------
@@ -95,12 +95,27 @@ def formatter(rec):
     )
 
 
-# ---------------- IMG TO GRAPH ----------------
-def img2graph(llm: OpenAILLM, image_path: str) -> None:
+# ---------------- IMG TO GRAPH/TEXT ----------------
+# def img2graph(llm: OpenAILLM, image_path: str) -> None:
+#     content = [
+#         {
+#             "type": "text",
+#             "text": IMG2GRAPH_PROMPT,
+#         },
+#         {
+#             "type": "image_url",
+#             "image_url": {"url": image_path},
+#             # "image_url": {"url": encode_image(image_path)},
+#         },
+#     ]
+#     result = llm.invoke(content)
+#     return result.content
+
+def img2text(llm: OpenAILLM, image_path: str) -> None:
     content = [
         {
             "type": "text",
-            "text": IMG2GRAPH_PROMPT,
+            "text": IMG2TEXT_PROMPT,
         },
         {
             "type": "image_url",
@@ -127,22 +142,18 @@ def retrieve_context(retriever, labels, query, query_emb, top_k=1, per_seed_limi
     )
     return [item.content for item in results.items]
 
-# With G1
-# def generate_response(llm: OpenAILLM, retriever: VectorCypherRetriever, embedder: OpenAIEmbeddings, labels: List[str], query: str, image_path: str) -> str:
-#     # TODO: translate image to G1
+# With IMG2GRAPH
+# def generate_response(llm: OpenAILLM, embedder: OpenAIEmbeddings, retriever: VectorCypherRetriever, labels: List[str], query: str, image_path: str) -> str:
 #     g1 = img2graph(llm, image_path)
 #     # print("\G1:\n", g1)
 
-#     # TODO: retrieve G2 from G1 + query
 #     r_query = f"CONTEXT: {g1}\n\nQUERY: {query}"
 #     r_query_emb = embedder.embed_query(r_query)
 #     context = retrieve_context(retriever, labels, r_query, r_query_emb)
 #     g2 = "\n".join(item for item in context)
 #     # print("\G2:\n", g2)
     
-#     # TODO: create G3 from G1 + G2
 #     g3 = g1 + "\n" + g2
-
 #     content = [
 #         {
 #             "type": "text",
@@ -150,8 +161,7 @@ def retrieve_context(retriever, labels, query, query_emb, top_k=1, per_seed_limi
 #         },
 #         {
 #             "type": "image_url",
-#             "image_url": {"url": image_path},
-#             # "image_url": {"url": encode_image(image_path)},
+#             "image_url": {"url": encode_image(image_path)},
 #         },
 #     ]
 #     result = llm.chat.completions.create(
@@ -167,34 +177,28 @@ def retrieve_context(retriever, labels, query, query_emb, top_k=1, per_seed_limi
 #     ])
 #     return response
 
-# Without G1
-def generate_response(llm: OpenAILLM, retriever: VectorCypherRetriever, embedder: OpenAIEmbeddings, labels: List[str], query: str, image_path: str) -> str:
-    # TODO: translate image to G1
-    g1 = img2graph(llm, image_path)
-    # print("\G1:\n", g1)
+# With IMG2TEXT
+def generate_response(inference_llm: OpenAILLM, caption_llm: OpenAILLM, embedder: OpenAIEmbeddings, retriever: VectorCypherRetriever, labels: List[str], query: str, image_path: str) -> str:
+    caption = img2text(caption_llm, image_path)
+    # print("\Caption:\n", caption)
 
-    # TODO: retrieve G2 from G1 + query
-    r_query = f"CONTEXT: {g1}\n\nQUERY: {query}"
+    r_query = f"Context: {caption}\n\nQuery: {query}"
     r_query_emb = embedder.embed_query(r_query)
     context = retrieve_context(retriever, labels, r_query, r_query_emb)
-    g2 = "\n".join(item for item in context)
-    # print("\G2:\n", g2)
-    
-    # TODO: create G3 from G1 + G2
-    g3 = g1 + "\n" + g2
+    context_graph = "\n".join(item for item in context)
+    # print("\Retrieved:\n", retrieved_graph)
 
     content = [
         {
             "type": "text",
-            "text": f"Context:\n{g3}\n\nQuestion:\n{query}\n\nAnswer:",
+            "text": f"Context:\n{context_graph}\n\nQuery:\n{query}\n\nAnswer:",
         },
         {
             "type": "image_url",
-            "image_url": {"url": image_path},
-            # "image_url": {"url": encode_image(image_path)},
+            "image_url": {"url": encode_image(image_path)},
         },
     ]
-    result = llm.chat.completions.create(
+    result = inference_llm.chat.completions.create(
         messages=[
             {"role": "system", "content": SYSTEM_PROMPT},
             {"role": "user", "content": content},

@@ -1,5 +1,4 @@
 # ---------------- handle_query.py ----------------
-# CREATING G1
 IMG2GRAPH_PROMPT = """
 You are an expert in image understanding and knowledge graph construction.
 Analyze the given image and output only valid JSON that represents the detected entities and relationships as a knowledge graph.
@@ -20,7 +19,13 @@ Return format example:
 }
 """
 
-# RETRIEVING G2
+# TODO: IMG2TEXT PROMPT
+IMG2TEXT_PROMPT = """
+You are an expert in image captioning with a focus on art history.
+Analyze the given image and provide a detailed caption that highlights the key visual elements, styles, and cultural significance depicted in the artwork.
+Your caption should be informative and suitable for use in an academic context.
+"""
+
 RETRIEVAL_CYPHER = """
 WITH node, score
 MATCH p = (node)__PATTERN__(nbr)
@@ -132,10 +137,14 @@ ORDER BY r.rank DESC
 RETURN nodes, collect(r) AS rels
 """
 
-# FINAL ANSWER
 SYSTEM_PROMPT = (
+  # "You are an expert in Korean art history. "
+  # "Rely ONLY on the provided subgraph facts. "
+  # "Cite entities by their names as shown in the node lines. "
+  # "If the graph does not contain enough information, plainly say so."
   "You are an expert in Korean art history. "
-  "Rely ONLY on the provided subgraph facts. "
-  "Cite entities by their names as shown in the node lines. "
-  "If the graph does not contain enough information, plainly say so."
+  "Use all relevant facts from the provided context to craft detailed, well-informed answers. "
+  "Cite specific entities and cultural elements where appropriate. "
+  "Focus on conveying both stylistic and cultural significance. "
+  "If critical information is missing, acknowledge that explicitly. Do not add information beyond the provided context."
 )
