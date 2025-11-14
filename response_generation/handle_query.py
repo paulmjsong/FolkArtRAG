@@ -111,7 +111,7 @@ def img2caption(llm: OpenAI, model: str, image_path: str) -> str:
 
 
 # ---------------- RETRIEVAL & GENERATION ----------------
-def retrieve_context(retriever: VectorCypherRetriever, query: str, query_emb: list[float], top_k: int=1, per_seed_limit: int=10) -> list[str]:
+def retrieve_context(retriever: VectorCypherRetriever, query: str, query_emb: list[float], top_k: int=5, per_seed_limit: int=10) -> list[str]:
     results = retriever.search(
         query_text=query,
         top_k=top_k,
@@ -128,9 +128,10 @@ def generate_response(llm: OpenAI, gen_model: str, cap_model: str, embedder: Ope
     caption = img2caption(llm, cap_model, image_path)
     # print("Caption:\n", caption)
 
-    r_query = f"Context: {caption}\n\nQuery: {query}"
-    r_query_emb = embedder.embed_query(r_query)
-    context_list = retrieve_context(retriever, r_query, r_query_emb)
+    # r_query = f"Context: {caption}\n\nQuery: {query}"
+    # r_query_emb = embedder.embed_query(r_query)
+    caption_emb = embedder.embed_query(caption)
+    context_list = retrieve_context(retriever, caption, caption_emb)
     context_text = "\n\n".join(item for item in context_list)
     # print("Retrieved:\n", context_text)
 
